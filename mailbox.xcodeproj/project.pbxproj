@@ -11,6 +11,7 @@
 		41CF093D94DFA1B01D26EF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227DCCEAA0530A48BE4212D0 /* AppDelegate.swift */; };
 		43CD7C77546C812A891A2776 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54E8D7EDF9187FCA4CF0F33 /* Foundation.framework */; };
 		54E740B94892F6936E1A6952 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = DEBBA9CB41FCCC0F5E523761 /* Main.storyboard */; };
+		B00175F71A982527003D9360 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00175F61A982527003D9360 /* MailboxViewController.swift */; };
 		ECABEF98C7DA9ACF1C35AA62 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6829C18A328C4CC5FB4C7D26 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		6829C18A328C4CC5FB4C7D26 /* LaunchScreen.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		72160A3D2B6829591031B48C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74645310C79C970965E4B8EA /* mailbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mailbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00175F61A982527003D9360 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailboxViewController.swift; path = ViewControllers/MailboxViewController.swift; sourceTree = "<group>"; };
 		B1D06DF3D7F667DBF3A367FA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FE2230669DAC7A3F499B58 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		DEBBA9CB41FCCC0F5E523761 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		68EEFEF26A67226DF10BF49F /* mailbox */ = {
 			isa = PBXGroup;
 			children = (
+				B00175F51A9817A1003D9360 /* ViewControllers */,
 				682E28715A6E6A9B13CBBC9E /* Extensions */,
 				6F99AAA65879D33C86D3E88C /* Protocols */,
 				C247310DBBFEDF80703FA934 /* Models */,
@@ -128,6 +131,14 @@
 				D3FE2230669DAC7A3F499B58 /* UnitTests-Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B00175F51A9817A1003D9360 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B00175F61A982527003D9360 /* MailboxViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		B8FD05B6945A399AABE05220 /* Other-Sources */ = {
@@ -325,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41CF093D94DFA1B01D26EF79 /* AppDelegate.swift in Sources */,
+				B00175F71A982527003D9360 /* MailboxViewController.swift in Sources */,
 				54E740B94892F6936E1A6952 /* Main.storyboard in Sources */,
 				ECABEF98C7DA9ACF1C35AA62 /* LaunchScreen.xib in Sources */,
 			);
