@@ -15,7 +15,9 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var mailScrollView: UIScrollView!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var topMessage: UIView!
-    @IBOutlet weak var actionIconImage: UIImageView!
+    
+    @IBOutlet weak var leftActionIcon: UIImageView!
+    @IBOutlet weak var rightActionIcon: UIImageView!
     
     var messageOriginalPosition: CGPoint!
     var archiveIcon: UIImage! = UIImage(named: "archive_icon")
@@ -35,7 +37,6 @@ class MailboxViewController: UIViewController {
         var totalWidth = searchImageView.frame.width
         var totalHeight = feedImage.frame.height + searchImageView.frame.height + helpImageView.frame.height + topMessage.frame.height
         
-
         mailScrollView.contentSize = CGSizeMake(totalWidth, totalHeight)
     }
 
@@ -61,28 +62,26 @@ class MailboxViewController: UIViewController {
         } else if (sender.state == UIGestureRecognizerState.Changed) {
             var newPosition = messageOriginalPosition.x + sender.translationInView(view).x
             sender.view!.center = CGPoint(x: newPosition, y: messageOriginalPosition.y)
-            println(newPosition)
             
-            if (Int(newPosition) < Int(actionBounds[0])) {
-               println("List")
-               sender.view!.superview!.backgroundColor = listColor
-            } else if (Int(actionBounds[0]) < Int(newPosition) &&
-                Int(newPosition) < Int(actionBounds[1])) {
-                println("later")
-               sender.view!.superview!.backgroundColor = laterColor
-            } else if (Int(actionBounds[1]) < Int(newPosition) &&
-                Int(newPosition) < Int(actionBounds[2])) {
-                println("idle")
-               sender.view!.superview!.backgroundColor = defaultColor
-            } else if (Int(actionBounds[2]) < Int(newPosition) &&
-                Int(newPosition) < Int(actionBounds[3])) {
-                println("archive")
-               sender.view!.superview!.backgroundColor = archiveColor
+            if (Int(newPosition) <= Int(actionBounds[0])) {
+                sender.view!.superview!.backgroundColor = listColor
+                rightActionIcon.image = listIcon
+            } else if (Int(actionBounds[0]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[1])) {
+                sender.view!.superview!.backgroundColor = laterColor
+                rightActionIcon.image = laterIcon
+            } else if (Int(actionBounds[1]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[2])) {
+                sender.view!.superview!.backgroundColor = defaultColor
+                rightActionIcon.image = laterIcon
+            } else if (Int(actionBounds[2]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[3])) {
+                leftActionIcon.image = archiveIcon
+                sender.view!.superview!.backgroundColor = archiveColor
             } else {
-                println("delete")
-               sender.view!.superview!.backgroundColor = deleteColor
+                sender.view!.superview!.backgroundColor = deleteColor
+                leftActionIcon.image = deleteIcon
             }
-            
             
         } else if (sender.state == UIGestureRecognizerState.Ended) {
            sender.view!.center = messageOriginalPosition
