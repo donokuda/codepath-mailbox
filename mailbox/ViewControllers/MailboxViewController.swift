@@ -10,6 +10,7 @@ import UIKit
 
 class MailboxViewController: UIViewController {
 
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var overlayImageView: UIImageView!
     @IBOutlet weak var searchImageView: UIImageView!
@@ -20,6 +21,9 @@ class MailboxViewController: UIViewController {
     
     @IBOutlet weak var leftActionIcon: UIImageView!
     @IBOutlet weak var rightActionIcon: UIImageView!
+    
+    var tapGesture: UITapGestureRecognizer!
+    var contentMenuPanGesture: UIPanGestureRecognizer!
     
     var messageHeight: CGFloat!
     var messageOriginalPosition: CGPoint!
@@ -46,6 +50,10 @@ class MailboxViewController: UIViewController {
         
         mailScrollView.contentSize = CGSizeMake(totalWidth, totalHeight)
         overlayView.alpha = 0
+        
+        var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
+        edgeGesture.edges = UIRectEdge.Left
+        contentView.addGestureRecognizer(edgeGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -168,6 +176,57 @@ class MailboxViewController: UIViewController {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.feedImage.center.y -= self.messageHeight
             })
+        }
+    }
+    
+    func onEdgePan(gesture: UIScreenEdgePanGestureRecognizer){
+        var translation = gesture.translationInView(view)
+        if (gesture.state == .Began || gesture.state == .Changed) {
+           contentView.frame.origin.x = translation.x
+        } else if (gesture.state == .Ended) {
+            if (contentView.frame.origin.x > 150) {
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.contentView.frame.origin.x =  270
+                    }, completion: { (completed: Bool) -> Void in
+                        self.tapGesture = UITapGestureRecognizer(target: self, action: "didTapOpenMenu:")
+                        self.contentView.addGestureRecognizer(self.tapGesture)
+                        
+                        self.contentMenuPanGesture = UIPanGestureRecognizer(target: self, action: "didPanOpenMenu:")
+                        self.contentView.addGestureRecognizer(self.contentMenuPanGesture)
+                })
+            } else {
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.contentView.frame.origin.x = 0
+                })
+            }
+        }
+    }
+    
+    func didTapOpenMenu(gesture: UITapGestureRecognizer) {
+        println("tapped")
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            gesture.view!.frame.origin.x = 0
+            gesture.view!.removeGestureRecognizer(self.contentMenuPanGesture)
+        })
+        
+    }
+    
+    func didPanOpenMenu(gesture: UIPanGestureRecognizer) {
+        if (gesture.state == .Began || gesture.state == .Changed) {
+            gesture.view!.frame.origin.x = gesture.translationInView(view).x + 270
+            println(gesture.view!.frame.origin.x)
+        } else if (gesture.state == .Ended) {
+            if (contentView.frame.origin.x > 150) {
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.contentView.frame.origin.x =  270
+                })
+            } else {
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.contentView.frame.origin.x = 0
+                    gesture.view!.removeGestureRecognizer(self.tapGesture)
+                    gesture.view!.removeGestureRecognizer(self.contentMenuPanGesture)
+                })
+            }
         }
     }
 }
