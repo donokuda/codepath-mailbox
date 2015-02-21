@@ -84,8 +84,55 @@ class MailboxViewController: UIViewController {
             }
             
         } else if (sender.state == UIGestureRecognizerState.Ended) {
-           sender.view!.center = messageOriginalPosition
+            var newPosition = sender.view!.center.x
+            var currentYPos = sender.view!.center.y
             
+            if (Int(newPosition) <= Int(actionBounds[0])) {
+                
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    sender.view!.center = CGPoint(x: -600, y: currentYPos)
+                    }, completion: { (completed: Bool) -> Void in
+                    // code
+                })
+                
+                println("list it")
+            } else if (Int(actionBounds[0]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[1])) {
+                    
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    sender.view!.center = CGPoint(x: -600, y: currentYPos)
+                    }, completion: { (completed: Bool) -> Void in
+                    // code
+                })
+                println("later it")
+            } else if (Int(actionBounds[1]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[2])) {
+                    
+                UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    sender.view!.center = self.messageOriginalPosition
+                })
+                    
+                println("default it")
+            } else if (Int(actionBounds[2]) <= Int(newPosition) &&
+                Int(newPosition) <= Int(actionBounds[3])) {
+                    
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    sender.view!.center = CGPoint(x: 600, y: currentYPos)
+                    }, completion: { (completed: Bool) -> Void in
+                    // code
+                })
+                                            
+                println("archive it")
+            } else {
+                sender.view!.superview!.backgroundColor = deleteColor
+                println("delete it")
+                
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    sender.view!.center = CGPoint(x: 600, y: currentYPos)
+                    }, completion: { (completed: Bool) -> Void in
+                    // code
+                })
+            }
         }
     }
 }
