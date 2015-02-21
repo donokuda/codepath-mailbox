@@ -67,11 +67,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="actionIconImage" destination="Oft-gg-BBO" id="KMj-Sc-TUX"/>
                         <outlet property="feedImage" destination="M1v-6s-X5a" id="P63-UB-JFU"/>
                         <outlet property="helpImageView" destination="hfU-kL-5sS" id="tG1-C5-jF7"/>
-                        <outlet property="leftActionIcon" destination="Oft-gg-BBO" id="sSJ-au-f7Q"/>
                         <outlet property="mailScrollView" destination="onl-Dp-j5D" id="0Ku-31-YAX"/>
-                        <outlet property="rightActionIcon" destination="WlH-hy-g3s" id="Nuh-h8-Kak"/>
                         <outlet property="searchImageView" destination="aSd-Ze-8HA" id="ji4-Ff-egw"/>
                         <outlet property="topMessage" destination="rIN-u6-5OI" id="VQm-xy-uYP"/>
                     </connections>

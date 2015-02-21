@@ -13,10 +13,9 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var searchImageView: UIImageView!
     @IBOutlet weak var helpImageView: UIImageView!
     @IBOutlet weak var mailScrollView: UIScrollView!
-    @IBOutlet weak var leftActionIcon: UIImageView!
-    @IBOutlet weak var rightActionIcon: UIImageView!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var topMessage: UIView!
+    @IBOutlet weak var actionIconImage: UIImageView!
     
     var messageOriginalPosition: CGPoint!
     var archiveIcon: UIImage! = UIImage(named: "archive_icon")
@@ -26,6 +25,7 @@ class MailboxViewController: UIViewController {
     
     var actionBounds = [-50.0, 20, 270, 410]
     var archiveColor = UIColor(red: 0.384, green: 0.835, blue: 0.314, alpha: 1)
+    var defaultColor = UIColor(red: 0.863, green: 0.863, blue: 0.863, alpha: 1)
     var deleteColor = UIColor(red: 0.894, green: 0.239, blue: 0.153, alpha: 1)
     var listColor = UIColor(red: 0.808, green: 0.588, blue: 0.384, alpha: 1)
     var laterColor = UIColor(red: 0.973, green: 0.796, blue: 0.153, alpha: 1)
@@ -65,17 +65,22 @@ class MailboxViewController: UIViewController {
             
             if (Int(newPosition) < Int(actionBounds[0])) {
                println("List")
+               sender.view!.superview!.backgroundColor = listColor
             } else if (Int(actionBounds[0]) < Int(newPosition) &&
                 Int(newPosition) < Int(actionBounds[1])) {
                 println("later")
+               sender.view!.superview!.backgroundColor = laterColor
             } else if (Int(actionBounds[1]) < Int(newPosition) &&
                 Int(newPosition) < Int(actionBounds[2])) {
                 println("idle")
+               sender.view!.superview!.backgroundColor = defaultColor
             } else if (Int(actionBounds[2]) < Int(newPosition) &&
                 Int(newPosition) < Int(actionBounds[3])) {
                 println("archive")
+               sender.view!.superview!.backgroundColor = archiveColor
             } else {
                 println("delete")
+               sender.view!.superview!.backgroundColor = deleteColor
             }
             
             
