@@ -36,16 +36,16 @@
                                                 <rect key="frame" x="-40" y="0.0" width="400" height="126"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="l36-ip-T27">
-                                                        <rect key="frame" x="40" y="0.0" width="320" height="86"/>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="WlH-hy-g3s">
+                                                        <rect key="frame" x="372" y="32" width="25" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </imageView>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="Oft-gg-BBO">
                                                         <rect key="frame" x="0.0" y="31" width="25" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </imageView>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="WlH-hy-g3s">
-                                                        <rect key="frame" x="372" y="32" width="25" height="25"/>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="l36-ip-T27">
+                                                        <rect key="frame" x="40" y="0.0" width="320" height="86"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </imageView>
                                                 </subviews>
@@ -69,7 +69,9 @@
                     <connections>
                         <outlet property="feedImage" destination="M1v-6s-X5a" id="P63-UB-JFU"/>
                         <outlet property="helpImageView" destination="hfU-kL-5sS" id="tG1-C5-jF7"/>
+                        <outlet property="leftActionIcon" destination="Oft-gg-BBO" id="sSJ-au-f7Q"/>
                         <outlet property="mailScrollView" destination="onl-Dp-j5D" id="0Ku-31-YAX"/>
+                        <outlet property="rightActionIcon" destination="WlH-hy-g3s" id="Nuh-h8-Kak"/>
                         <outlet property="searchImageView" destination="aSd-Ze-8HA" id="ji4-Ff-egw"/>
                         <outlet property="topMessage" destination="rIN-u6-5OI" id="VQm-xy-uYP"/>
                     </connections>

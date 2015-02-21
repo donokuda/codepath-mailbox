@@ -13,10 +13,22 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var searchImageView: UIImageView!
     @IBOutlet weak var helpImageView: UIImageView!
     @IBOutlet weak var mailScrollView: UIScrollView!
-    
+    @IBOutlet weak var leftActionIcon: UIImageView!
+    @IBOutlet weak var rightActionIcon: UIImageView!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var topMessage: UIView!
+    
     var messageOriginalPosition: CGPoint!
+    var archiveIcon: UIImage! = UIImage(named: "archive_icon")
+    var deleteIcon: UIImage! = UIImage(named: "delete_icon")
+    var listIcon: UIImage! = UIImage(named: "list_icon")
+    var laterIcon: UIImage! = UIImage(named: "later_icon")
+    
+    var actionBounds = [-50.0, 20, 270, 410]
+    var archiveColor = UIColor(red: 0.384, green: 0.835, blue: 0.314, alpha: 1)
+    var deleteColor = UIColor(red: 0.894, green: 0.239, blue: 0.153, alpha: 1)
+    var listColor = UIColor(red: 0.808, green: 0.588, blue: 0.384, alpha: 1)
+    var laterColor = UIColor(red: 0.973, green: 0.796, blue: 0.153, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +59,28 @@ class MailboxViewController: UIViewController {
         if (sender.state == UIGestureRecognizerState.Began) {
            messageOriginalPosition = sender.view!.center
         } else if (sender.state == UIGestureRecognizerState.Changed) {
-            println(messageOriginalPosition )
-            println(sender.translationInView(view))
+            var newPosition = messageOriginalPosition.x + sender.translationInView(view).x
+            sender.view!.center = CGPoint(x: newPosition, y: messageOriginalPosition.y)
+            println(newPosition)
             
-            sender.view!.center = CGPoint(x: messageOriginalPosition.x + sender.translationInView(view).x, y: messageOriginalPosition.y)
+            if (Int(newPosition) < Int(actionBounds[0])) {
+               println("List")
+            } else if (Int(actionBounds[0]) < Int(newPosition) &&
+                Int(newPosition) < Int(actionBounds[1])) {
+                println("later")
+            } else if (Int(actionBounds[1]) < Int(newPosition) &&
+                Int(newPosition) < Int(actionBounds[2])) {
+                println("idle")
+            } else if (Int(actionBounds[2]) < Int(newPosition) &&
+                Int(newPosition) < Int(actionBounds[3])) {
+                println("archive")
+            } else {
+                println("delete")
+            }
+            
+            
         } else if (sender.state == UIGestureRecognizerState.Ended) {
+           sender.view!.center = messageOriginalPosition
             
         }
     }
