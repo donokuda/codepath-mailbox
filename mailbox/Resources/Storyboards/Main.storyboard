@@ -33,7 +33,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="xDz-Ts-xCR">
-                                                <rect key="frame" x="-40" y="0.0" width="400" height="126"/>
+                                                <rect key="frame" x="-40" y="0.0" width="400" height="86"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="WlH-hy-g3s">
@@ -63,6 +63,20 @@
                                     </imageView>
                                 </subviews>
                             </scrollView>
+                            <view contentMode="scaleToFill" id="ZCu-Cy-cIw" userLabel="overlay view">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reschedule" id="wnf-Hv-eUP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="gri-2I-GRq" appends="YES" id="5Ps-o0-wPV"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -71,6 +85,8 @@
                         <outlet property="helpImageView" destination="hfU-kL-5sS" id="tG1-C5-jF7"/>
                         <outlet property="leftActionIcon" destination="Oft-gg-BBO" id="RPB-Bd-LDW"/>
                         <outlet property="mailScrollView" destination="onl-Dp-j5D" id="0Ku-31-YAX"/>
+                        <outlet property="overlayImageView" destination="wnf-Hv-eUP" id="6YC-Yu-QBv"/>
+                        <outlet property="overlayView" destination="ZCu-Cy-cIw" id="tHh-eG-bMb"/>
                         <outlet property="rightActionIcon" destination="WlH-hy-g3s" id="qw0-P6-fzF"/>
                         <outlet property="searchImageView" destination="aSd-Ze-8HA" id="ji4-Ff-egw"/>
                         <outlet property="topMessage" destination="rIN-u6-5OI" id="VQm-xy-uYP"/>
@@ -82,6 +98,11 @@
                         <action selector="didPanMessage:" destination="9l1-eA-dw0" id="ozZ-kj-kRI"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="gri-2I-GRq" userLabel="overlayTapGesture">
+                    <connections>
+                        <action selector="didTapOverlay:" destination="9l1-eA-dw0" id="sCv-Mj-bWw"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="154" y="388"/>
         </scene>
@@ -93,6 +114,7 @@
         <image name="later_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
+        <image name="reschedule" width="320" height="568"/>
         <image name="search" width="320" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -10,6 +10,8 @@ import UIKit
 
 class MailboxViewController: UIViewController {
 
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var overlayImageView: UIImageView!
     @IBOutlet weak var searchImageView: UIImageView!
     @IBOutlet weak var helpImageView: UIImageView!
     @IBOutlet weak var mailScrollView: UIScrollView!
@@ -19,11 +21,15 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var leftActionIcon: UIImageView!
     @IBOutlet weak var rightActionIcon: UIImageView!
     
+    var messageHeight: CGFloat!
     var messageOriginalPosition: CGPoint!
     var archiveIcon: UIImage! = UIImage(named: "archive_icon")
     var deleteIcon: UIImage! = UIImage(named: "delete_icon")
     var listIcon: UIImage! = UIImage(named: "list_icon")
     var laterIcon: UIImage! = UIImage(named: "later_icon")
+    
+    var rescheduleImage: UIImage! = UIImage(named: "reschedule")
+    var listImage: UIImage! = UIImage(named: "list")
     
     var actionBounds = [-50.0, 20, 270, 410]
     var archiveColor = UIColor(red: 0.384, green: 0.835, blue: 0.314, alpha: 1)
@@ -36,8 +42,10 @@ class MailboxViewController: UIViewController {
         super.viewDidLoad()
         var totalWidth = searchImageView.frame.width
         var totalHeight = feedImage.frame.height + searchImageView.frame.height + helpImageView.frame.height + topMessage.frame.height
+        messageHeight = topMessage.frame.height
         
         mailScrollView.contentSize = CGSizeMake(totalWidth, totalHeight)
+        overlayView.alpha = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,21 +96,28 @@ class MailboxViewController: UIViewController {
             var currentYPos = sender.view!.center.y
             
             if (Int(newPosition) <= Int(actionBounds[0])) {
+                println("list it")
                 
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     sender.view!.center = CGPoint(x: -600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
-                    // code
+                        
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.overlayImageView.image = self.listImage
+                        self.overlayView.alpha = 1
+                    })
                 })
-                
-                println("list it")
             } else if (Int(actionBounds[0]) <= Int(newPosition) &&
                 Int(newPosition) <= Int(actionBounds[1])) {
                     
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     sender.view!.center = CGPoint(x: -600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
-                    // code
+                        
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        self.overlayImageView.image = self.rescheduleImage
+                        self.overlayView.alpha = 1
+                    })
                 })
                 println("later it")
             } else if (Int(actionBounds[1]) <= Int(newPosition) &&
@@ -119,7 +134,14 @@ class MailboxViewController: UIViewController {
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     sender.view!.center = CGPoint(x: 600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
-                    // code
+                        
+                    UIView.animateWithDuration(0.5, animations: { () -> Void in
+                        sender.view!.center = CGPoint(x: 600, y: currentYPos)
+                        }, completion: { (completed: Bool) -> Void in
+                        UIView.animateWithDuration(0.5, animations: { () -> Void in
+                            self.feedImage.center.y -= self.messageHeight
+                        })
+                    })
                 })
                                             
                 println("archive it")
@@ -130,9 +152,22 @@ class MailboxViewController: UIViewController {
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     sender.view!.center = CGPoint(x: 600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
-                    // code
+                    UIView.animateWithDuration(0.5, animations: { () -> Void in
+                        self.feedImage.center.y -= self.messageHeight
+                    })
                 })
             }
+        }
+    }
+    
+    
+    @IBAction func didTapOverlay(sender: UITapGestureRecognizer) {
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            sender.view!.alpha = 0
+            }) { (completed: Bool) -> Void in
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.feedImage.center.y -= self.messageHeight
+            })
         }
     }
 }
