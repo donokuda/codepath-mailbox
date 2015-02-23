@@ -41,6 +41,9 @@ class MailboxViewController: UIViewController {
     var deleteColor = UIColor(red: 0.894, green: 0.239, blue: 0.153, alpha: 1)
     var listColor = UIColor(red: 0.808, green: 0.588, blue: 0.384, alpha: 1)
     var laterColor = UIColor(red: 0.973, green: 0.796, blue: 0.153, alpha: 1)
+    
+    var leftIconBound: CGFloat = 60.0
+    var rightIconBound: CGFloat = -60.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,24 +83,29 @@ class MailboxViewController: UIViewController {
             sender.view!.center = CGPoint(x: newPosition, y: messageOriginalPosition.y)
             
             if (Int(newPosition) <= Int(actionBounds[0])) {
-                sender.view!.superview!.backgroundColor = listColor
+                topMessage.backgroundColor = listColor
                 rightActionIcon.image = listIcon
             } else if (Int(actionBounds[0]) <= Int(newPosition) &&
                 Int(newPosition) <= Int(actionBounds[1])) {
-                sender.view!.superview!.backgroundColor = laterColor
+                topMessage.backgroundColor = laterColor
                 rightActionIcon.image = laterIcon
             } else if (Int(actionBounds[1]) <= Int(newPosition) &&
                 Int(newPosition) <= Int(actionBounds[2])) {
-                sender.view!.superview!.backgroundColor = defaultColor
+                topMessage.backgroundColor = defaultColor
                 rightActionIcon.image = laterIcon
             } else if (Int(actionBounds[2]) <= Int(newPosition) &&
                 Int(newPosition) <= Int(actionBounds[3])) {
                 leftActionIcon.image = archiveIcon
-                sender.view!.superview!.backgroundColor = archiveColor
+                topMessage.backgroundColor = archiveColor
             } else {
-                sender.view!.superview!.backgroundColor = deleteColor
+                topMessage.backgroundColor = deleteColor
                 leftActionIcon.image = deleteIcon
             }
+            
+            println(sender.view!.frame.origin.x)
+            leftActionIcon.alpha = CGFloat(sender.view!.frame.origin.x) / leftIconBound
+            
+            rightActionIcon.alpha = CGFloat(sender.view!.frame.origin.x) / rightIconBound
             
         } else if (sender.state == UIGestureRecognizerState.Ended) {
             var newPosition = sender.view!.center.x
@@ -230,7 +238,7 @@ class MailboxViewController: UIViewController {
         }
     }
     
-    func resetMessage {
+    func resetMessage (){
         
     }
 }

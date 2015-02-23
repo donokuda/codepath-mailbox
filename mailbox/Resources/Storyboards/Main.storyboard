@@ -41,26 +41,26 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" id="xDz-Ts-xCR">
-                                                        <rect key="frame" x="-40" y="0.0" width="400" height="86"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="WlH-hy-g3s">
-                                                                <rect key="frame" x="372" y="32" width="25" height="25"/>
+                                                                <rect key="frame" x="270" y="32" width="25" height="25"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="Oft-gg-BBO">
-                                                                <rect key="frame" x="0.0" y="31" width="25" height="25"/>
+                                                                <rect key="frame" x="20" y="31" width="25" height="25"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="l36-ip-T27">
-                                                                <rect key="frame" x="40" y="0.0" width="320" height="86"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="lMz-aJ-1c6" appends="YES" id="sCQ-3J-hoD"/>
+                                                                </connections>
                                                             </imageView>
                                                         </subviews>
                                                         <gestureRecognizers/>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="lMz-aJ-1c6" appends="YES" id="lkN-8F-JRO"/>
-                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.75760696503794733" green="0.75847739361702127" blue="0.72304081225343819" alpha="1" colorSpace="calibratedRGB"/>
