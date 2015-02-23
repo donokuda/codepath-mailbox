@@ -161,7 +161,10 @@ class MailboxViewController: UIViewController {
                 Int(newPosition) <= Int(actionBounds[2])) {
                     
                 UIView.animateWithDuration(0.25, animations: { () -> Void in
-                    sender.view!.center = self.messageOriginalPosition
+                sender.view!.center = self.messageOriginalPosition
+                    }, completion: { (completed: Bool) -> Void in
+                    self.leftActionIcon.frame.origin.x = self.leftIconOriginalPosition
+                    self.rightActionIcon.frame.origin.x = self.rightIconOriginalPosition
                 })
                     
                 println("default it")
@@ -182,7 +185,6 @@ class MailboxViewController: UIViewController {
                     
                 println("archive it")
             } else {
-                sender.view!.superview!.backgroundColor = deleteColor
                 println("delete it")
                 
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
@@ -267,6 +269,8 @@ class MailboxViewController: UIViewController {
         delay(2, { () -> () in
             self.topMessage.backgroundColor = self.defaultColor
             self.messageContainer.frame.origin.x = 0
+            self.leftActionIcon.image = self.archiveIcon
+            self.rightActionIcon.image = self.laterIcon
             self.leftActionIcon.frame.origin.x = self.leftIconOriginalPosition
             self.rightActionIcon.frame.origin.x = self.rightIconOriginalPosition
             self.messageImageView.frame.origin.x = self.messageImageOriginalPosition
