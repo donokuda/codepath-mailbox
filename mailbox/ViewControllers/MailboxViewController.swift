@@ -18,6 +18,7 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var mailScrollView: UIScrollView!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var topMessage: UIView!
+    @IBOutlet weak var messageContainer: UIView!
     
     @IBOutlet weak var leftActionIcon: UIImageView!
     @IBOutlet weak var rightActionIcon: UIImageView!
@@ -44,6 +45,9 @@ class MailboxViewController: UIViewController {
     
     var leftIconBound: CGFloat = 60.0
     var rightIconBound: CGFloat = -60.0
+    
+    var leftIconOriginalPosition: CGFloat!
+    var rightIconOriginalPosition: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +61,9 @@ class MailboxViewController: UIViewController {
         var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
         edgeGesture.edges = UIRectEdge.Left
         contentView.addGestureRecognizer(edgeGesture)
+        
+        leftIconOriginalPosition = leftActionIcon.frame.origin.x
+        rightIconOriginalPosition = rightActionIcon.frame.origin.x
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,10 +109,21 @@ class MailboxViewController: UIViewController {
                 leftActionIcon.image = deleteIcon
             }
             
-            println(sender.view!.frame.origin.x)
             leftActionIcon.alpha = CGFloat(sender.view!.frame.origin.x) / leftIconBound
             
             rightActionIcon.alpha = CGFloat(sender.view!.frame.origin.x) / rightIconBound
+            
+            println(sender.view!.frame.origin.x)
+            
+            if (sender.view!.frame.origin.x >= leftIconBound) {
+                leftActionIcon.frame.origin.x = sender.view!.frame.origin.x - 40
+            }
+            
+            if (sender.view!.frame.origin.x <= rightIconBound) {
+                var rightEdge = sender.view!.frame.origin.x + sender.view!.frame.width
+                println(rightEdge)
+                rightActionIcon.frame.origin.x = rightEdge + 10
+            }
             
         } else if (sender.state == UIGestureRecognizerState.Ended) {
             var newPosition = sender.view!.center.x
@@ -147,19 +165,15 @@ class MailboxViewController: UIViewController {
             } else if (Int(actionBounds[2]) <= Int(newPosition) &&
                 Int(newPosition) <= Int(actionBounds[3])) {
                     
+                    
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     sender.view!.center = CGPoint(x: 600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
-                        
                     UIView.animateWithDuration(0.5, animations: { () -> Void in
-                        sender.view!.center = CGPoint(x: 600, y: currentYPos)
-                        }, completion: { (completed: Bool) -> Void in
-                        UIView.animateWithDuration(0.5, animations: { () -> Void in
-                            self.feedImage.center.y -= self.messageHeight
-                        })
+                        self.feedImage.center.y -= self.messageHeight
                     })
                 })
-                                            
+                    
                 println("archive it")
             } else {
                 sender.view!.superview!.backgroundColor = deleteColor

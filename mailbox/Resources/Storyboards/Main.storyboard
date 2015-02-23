@@ -97,6 +97,7 @@
                         <outlet property="helpImageView" destination="hfU-kL-5sS" id="tG1-C5-jF7"/>
                         <outlet property="leftActionIcon" destination="Oft-gg-BBO" id="RPB-Bd-LDW"/>
                         <outlet property="mailScrollView" destination="onl-Dp-j5D" id="0Ku-31-YAX"/>
+                        <outlet property="messageContainer" destination="xDz-Ts-xCR" id="pZ1-g5-j4l"/>
                         <outlet property="overlayImageView" destination="wnf-Hv-eUP" id="6YC-Yu-QBv"/>
                         <outlet property="overlayView" destination="ZCu-Cy-cIw" id="tHh-eG-bMb"/>
                         <outlet property="rightActionIcon" destination="WlH-hy-g3s" id="qw0-P6-fzF"/>
