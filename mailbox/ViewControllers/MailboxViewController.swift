@@ -20,6 +20,7 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var topMessage: UIView!
     @IBOutlet weak var messageContainer: UIView!
     
+    @IBOutlet weak var messageImageView: UIImageView!
     @IBOutlet weak var leftActionIcon: UIImageView!
     @IBOutlet weak var rightActionIcon: UIImageView!
     
@@ -48,7 +49,8 @@ class MailboxViewController: UIViewController {
     
     var leftIconOriginalPosition: CGFloat!
     var rightIconOriginalPosition: CGFloat!
-
+    var messageImageOriginalPosition: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var totalWidth = searchImageView.frame.width
@@ -64,6 +66,7 @@ class MailboxViewController: UIViewController {
         
         leftIconOriginalPosition = leftActionIcon.frame.origin.x
         rightIconOriginalPosition = rightActionIcon.frame.origin.x
+        messageImageOriginalPosition = messageImageView.frame.origin.x
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,7 +136,7 @@ class MailboxViewController: UIViewController {
                 println("list it")
                 
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    sender.view!.center = CGPoint(x: -600, y: currentYPos)
+                    self.messageContainer.center = CGPoint(x: -600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
                         
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
@@ -145,7 +148,7 @@ class MailboxViewController: UIViewController {
                 Int(newPosition) <= Int(actionBounds[1])) {
                     
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    sender.view!.center = CGPoint(x: -600, y: currentYPos)
+                    self.messageContainer.center = CGPoint(x: -600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
                         
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
@@ -167,8 +170,11 @@ class MailboxViewController: UIViewController {
                     
                     
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    sender.view!.center = CGPoint(x: 600, y: currentYPos)
+                    self.messageContainer.center = CGPoint(x: 600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
+                        
+                    self.resetMessage()
+                        
                     UIView.animateWithDuration(0.5, animations: { () -> Void in
                         self.feedImage.center.y -= self.messageHeight
                     })
@@ -180,8 +186,11 @@ class MailboxViewController: UIViewController {
                 println("delete it")
                 
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
-                    sender.view!.center = CGPoint(x: 600, y: currentYPos)
+                    self.messageContainer.center = CGPoint(x: 600, y: currentYPos)
                     }, completion: { (completed: Bool) -> Void in
+                        
+                    self.resetMessage()
+                        
                     UIView.animateWithDuration(0.5, animations: { () -> Void in
                         self.feedImage.center.y -= self.messageHeight
                     })
@@ -195,6 +204,8 @@ class MailboxViewController: UIViewController {
         UIView.animateWithDuration(0.25, animations: { () -> Void in
             sender.view!.alpha = 0
             }) { (completed: Bool) -> Void in
+            self.resetMessage()
+                
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.feedImage.center.y -= self.messageHeight
             })
@@ -253,6 +264,15 @@ class MailboxViewController: UIViewController {
     }
     
     func resetMessage (){
-        
+        delay(2, { () -> () in
+            self.topMessage.backgroundColor = self.defaultColor
+            self.messageContainer.frame.origin.x = 0
+            self.leftActionIcon.frame.origin.x = self.leftIconOriginalPosition
+            self.rightActionIcon.frame.origin.x = self.rightIconOriginalPosition
+            self.messageImageView.frame.origin.x = self.messageImageOriginalPosition
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.feedImage.center.y += self.messageHeight
+            })
+        })
     }
 }
