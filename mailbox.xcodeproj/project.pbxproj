@@ -12,6 +12,7 @@
 		43CD7C77546C812A891A2776 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54E8D7EDF9187FCA4CF0F33 /* Foundation.framework */; };
 		54E740B94892F6936E1A6952 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = DEBBA9CB41FCCC0F5E523761 /* Main.storyboard */; };
 		B00175F71A982527003D9360 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00175F61A982527003D9360 /* MailboxViewController.swift */; };
+		B08056C71A9ADE12009DCC0D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08056C61A9ADE12009DCC0D /* Common.swift */; };
 		ECABEF98C7DA9ACF1C35AA62 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = 6829C18A328C4CC5FB4C7D26 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		72160A3D2B6829591031B48C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74645310C79C970965E4B8EA /* mailbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mailbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00175F61A982527003D9360 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailboxViewController.swift; path = ViewControllers/MailboxViewController.swift; sourceTree = "<group>"; };
+		B08056C61A9ADE12009DCC0D /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B1D06DF3D7F667DBF3A367FA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FE2230669DAC7A3F499B58 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		DEBBA9CB41FCCC0F5E523761 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		B8FD05B6945A399AABE05220 /* Other-Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B08056C61A9ADE12009DCC0D /* Common.swift */,
 				72160A3D2B6829591031B48C /* Info.plist */,
 			);
 			path = "Other-Sources";
@@ -338,6 +341,7 @@
 				41CF093D94DFA1B01D26EF79 /* AppDelegate.swift in Sources */,
 				B00175F71A982527003D9360 /* MailboxViewController.swift in Sources */,
 				54E740B94892F6936E1A6952 /* Main.storyboard in Sources */,
+				B08056C71A9ADE12009DCC0D /* Common.swift in Sources */,
 				ECABEF98C7DA9ACF1C35AA62 /* LaunchScreen.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

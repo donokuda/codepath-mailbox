@@ -229,4 +229,8 @@ class MailboxViewController: UIViewController {
             }
         }
     }
+    
+    func resetMessage {
+        
+    }
 }

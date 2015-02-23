@@ -71,7 +71,7 @@
                                             </imageView>
                                         </subviews>
                                     </scrollView>
-                                    <view contentMode="scaleToFill" id="ZCu-Cy-cIw" userLabel="overlay view">
+                                    <view hidden="YES" contentMode="scaleToFill" id="ZCu-Cy-cIw" userLabel="overlay view">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
